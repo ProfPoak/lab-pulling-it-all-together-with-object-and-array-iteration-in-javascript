@@ -112,5 +112,125 @@ function gameObject() {
                 },
             },
         },
-    };
+    }
 }
+
+function numPointsScored (playerName) {
+    const game = gameObject()
+
+    for (let name in game.home.players) {
+        if (name === playerName) {
+            return game.home.players[name].points
+        }
+    }
+
+    for (let name in game.away.players) {
+        if (name === playerName) {
+            return game.away.players[name].points
+        }
+    }
+}
+
+function shoeSize(playerName) {
+    const game = gameObject()
+
+    for (let name in game.home.players) {
+        if (name === playerName) {
+            return game.home.players[name].shoe
+        }
+    }
+
+    for (let name in game.away.players) {
+        if (name === playerName) {
+            return game.away.players[name].shoe
+        }
+    }
+}
+
+function teamColors(teamName) {
+    const game = gameObject()
+
+    if (game.home.teamName === teamName) {
+        return game.home.colors
+    }
+    else if (game.away.teamName === teamName) {
+        return game.away.colors
+    }    
+}
+
+function teamNames() {
+    const game = gameObject()
+    const teamNames = []
+
+    for (let team in game) {
+        teamNames.push(game[team].teamName)
+    }
+
+    return teamNames
+}
+
+function playerNumbers(teamName) {
+    const game = gameObject()
+    const playerNumbers = []
+
+    if(game.home.teamName === teamName) {
+        for (let name in game.home.players) {
+            playerNumbers.push(game.home.players[name].number)
+        }
+    }
+
+    if(game.away.teamName === teamName) {
+        for (let name in game.away.players) {
+            playerNumbers.push(game.away.players[name].number)
+        }
+    }
+    
+    return playerNumbers
+}
+
+function playerStats(playerName) {
+    const game = gameObject()
+
+    for (let name in game.home.players) {
+        if (name === playerName) {
+            return game.home.players[name]
+        }
+    }
+
+    for (let name in game.away.players) {
+        if (name === playerName) {
+            return game.away.players[name]
+        }
+    }
+}
+
+function bigShoeRebounds() {
+    const game = gameObject()
+    let largestShoe = 0
+    let playerRebounds
+    
+    for (let name in game.home.players) {
+        if(game.home.players[name].shoe > largestShoe) {
+            largestShoe = game.home.players[name].shoe
+            playerRebounds = game.home.players[name].rebounds
+        }
+    }
+
+    for (let name in game.away.players) {
+        if(game.away.players[name].shoe > largestShoe) {
+            largestShoe = game.away.players[name].shoe
+            playerRebounds = game.away.players[name].rebounds
+        }
+    }
+
+    return playerRebounds
+}
+
+numPointsScored('Brendan Hayword');
+shoeSize('Brendan Hayword');
+teamColors('Brooklyn Nets');
+teamNames();
+playerNumbers('Brooklyn Nets');
+playerStats('Brendan Hayword');
+bigShoeRebounds();
+
